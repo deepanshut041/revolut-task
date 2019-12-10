@@ -8,8 +8,8 @@ import io.reactivex.Single
 
 class RateRepositoryImpl(private val remoteAdapter: RateRemoteAdapter): RateRepository {
 
-    override fun loadRates(base: String, baseValue:Double): Observable<List<RateModel>> {
-        return remoteAdapter.loadCurrencyRate(base, baseValue)
+    override fun loadRates(base: String): Observable<List<RateModel>> {
+        return remoteAdapter.loadCurrencyRate(base)
     }
 
 }

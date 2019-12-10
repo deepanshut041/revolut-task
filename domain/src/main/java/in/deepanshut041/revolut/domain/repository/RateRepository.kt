@@ -5,5 +5,5 @@ import io.reactivex.Observable
 import io.reactivex.Single
 
 interface RateRepository {
-    fun loadRates(base:String, baseValue: Double): Observable<List<RateModel>>
+    fun loadRates(base:String): Observable<List<RateModel>>
 }

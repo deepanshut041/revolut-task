@@ -7,12 +7,12 @@ import io.reactivex.Observable
 
 class RateRemoteAdapterImpl(private val remote: RateEndpoints) : RateRemoteAdapter {
 
-    override fun loadCurrencyRate(base: String,  baseValue: Double): Observable<List<RateModel>> {
+    override fun loadCurrencyRate(base: String): Observable<List<RateModel>> {
         return remote.fetchRates(base).map { response ->
             val rates = ArrayList<RateModel>()
-            rates.add(RateModel(base, RateDto.valueOf(base).fullName, baseValue,  getFlagUrl(base)))
+            rates.add(RateModel(base, RateDto.valueOf(base).fullName, 1.0,  getFlagUrl(base), true))
             response.rates.map {
-                rates.add(RateModel(it.key.name, it.key.fullName, it.value * baseValue,  getFlagUrl(it.key.name)))
+                rates.add(RateModel(it.key.name, it.key.fullName, it.value,  getFlagUrl(it.key.name)))
             }
             rates.toList()
         }
@@ -23,5 +23,5 @@ class RateRemoteAdapterImpl(private val remote: RateEndpoints) : RateRemoteAdapt
 }
 
 interface RateRemoteAdapter {
-    fun loadCurrencyRate(base: String, baseValue: Double): Observable<List<RateModel>>
+    fun loadCurrencyRate(base: String): Observable<List<RateModel>>
 }

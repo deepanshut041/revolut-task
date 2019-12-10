@@ -17,19 +17,27 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import kotlinx.android.synthetic.main.item_rates_row.view.*
-import java.net.URL
 
-class RateListAdapter(private val context: Context,
-    val events: MutableLiveData<RateListEvent> = MutableLiveData()) :
+class RateListAdapter(
+    private val context: Context,
+    val events: MutableLiveData<RateListEvent> = MutableLiveData()
+) :
     ListAdapter<RateModel, RateListViewHolder>(RateDiffUtilCallback()) {
 
     override fun onBindViewHolder(holder: RateListViewHolder, position: Int) {
         holder.bind(getItem(position), context)
-
         holder.itemContainer.setOnClickListener {
-            if (position > 0)
+            if (!getItem(position).isBase)
                 events.value = RateListEvent.onBaseChanged(getItem(position).name)
         }
+
+        holder.itemValue.customAfterTextChanged {
+            if (getItem(position).isBase )
+                events.value = RateListEvent.onBaseValueChanged(it.toString().toDoubleOrNull() ?: 0.0)
+            else
+                holder.itemValue.clearFocus()
+        }
+
     }
 
     @Suppress("UNCHECKED_CAST")
@@ -44,12 +52,11 @@ class RateListAdapter(private val context: Context,
             return
         }
 
-            (payloads[0] as Pair<RateModel, RateModel>).let {
-                if (it.first.name != it.second.name) {
-                    holder.bind(it.second, context)
-                }
-                else
-                    holder.changeValue(it.second.value)
+        (payloads[0] as Pair<RateModel, RateModel>).let {
+            if (it.first.name != it.second.name) {
+                holder.bind(it.second, context)
+            } else
+                holder.changeValue(it.second.value)
         }
     }
 
@@ -81,11 +88,11 @@ class RateListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         setSvg(context, item.imgUrl)
     }
 
-    fun setSvg(context: Context, url: String){
+    fun setSvg(context: Context, url: String) {
         GlideToVectorYou
             .init()
             .with(context)
-            .load(Uri.parse(url),  itemImage)
+            .load(Uri.parse(url), itemImage)
     }
 
     fun changeValue(v: Double) {
