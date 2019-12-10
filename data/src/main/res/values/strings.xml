@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Data</string>
+    <string name="rate_eur">Euro Member Countries</string>
+    <string name="rate_aud">Australian Dollar</string>
+    <string name="rate_bgn">Bulgarian Lev</string>
+    <string name="rate_brl">Brazil Real</string>
+    <string name="rate_cad">Canada Dollar</string>
+    <string name="rate_chf">Switzerland Franc</string>
+    <string name="rate_cny">China Yuan Renminbi</string>
+    <string name="rate_czk">Czech Republic Koruna</string>
+    <string name="rate_dkk">Denmark Krone</string>
+    <string name="rate_gbp">United Kingdom Pound</string>
+    <string name="rate_hkd">Hong Kong Dollar</string>
+    <string name="rate_hrk">Croatia Kuna</string>
+    <string name="rate_huf">Hungary Forint</string>
+    <string name="rate_idr">Indonesia Rupiah</string>
+    <string name="rate_ils">Israel Shekel</string>
+    <string name="rate_inr">Indian Rupee</string>
+    <string name="rate_isk">Iceland Krona</string>
+    <string name="rate_jpy">Japan Yen</string>
+    <string name="rate_krw">Korea (South) Won</string>
+    <string name="rate_mxn">Mexico Peso</string>
+    <string name="rate_myr">Malaysia Ringgit</string>
+    <string name="rate_nok">Norwegian Krone</string>
+    <string name="rate_nzd">New Zealand Dollar</string>
+    <string name="rate_php">Philippines Peso</string>
+    <string name="rate_pln">Poland Zloty</string>
+    <string name="rate_ron">Romania Leu</string>
+    <string name="rate_rub">Russia Ruble</string>
+    <string name="rate_sek">Sweden Krona</string>
+    <string name="rate_sgd">Singapore Dollar</string>
+    <string name="rate_thb">Thailand Baht</string>
+    <string name="rate_try">Turkey Lira</string>
+    <string name="rate_usd">United States Dollar</string>
+    <string name="rate_zar">South Africa Rand</string>
+</resources>

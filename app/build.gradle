@@ -1,0 +1,67 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+    defaultConfig {
+        applicationId "in.deepanshut041.revoult"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+
+    dynamicFeatures = [":rates"]
+
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Internal
+    implementation project(":data")
+    api project(":domain")
+
+    //Kotlin
+    api libs.kotlin
+    api libs.ktx
+    api libs.koinViewModel
+
+    // Support
+    api libs.appCompat
+    api libs.constraintLayout
+    api libs.recyclerView
+
+    // Lifecycle
+    api libs.ktxReactiveStreams
+
+    // Glide
+    api libs.glideSvg
+
+
+    // RxAndroid
+    api(libs.rxAndroid2) {
+        exclude module: 'rxjava'
+    }
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}
+
